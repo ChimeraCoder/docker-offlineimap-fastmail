@@ -1,0 +1,40 @@
+[general]
+ui = ttyui
+accounts = Fastmail
+metadata = /home/offlineimap/mail/.offlineimap
+
+[Account Fastmail]
+localrepository = LocalFM
+remoterepository = RemoteFM
+
+[Repository LocalFM]
+type = Maildir
+localfolders = /home/offlineimap/mail/fastmail
+#subscribedonly = no
+#sep = /
+
+[Repository RemoteFM]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteuser = YOUR_EMAIL_ADDRESS@fastmail.com
+remotepass = YOUR_PASSWORD_HERE
+remoteport = 993
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl = yes
+expunge = no
+folderfilter = lambda foldername: foldername not in ['INBOX.Trash']
+maxconnections = 3
+readonly = True
+
+
+
+# Optional
+# only needed if you intend on using mutt
+[mbnames]
+enabled = yes
+filename = /home/offlineimap/mail/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+
