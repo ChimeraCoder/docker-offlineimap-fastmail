@@ -1,0 +1,14 @@
+[Unit]
+Description=OfflineimapFastmail
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+EnvironmentFile=/etc/sysconfig/offlineimap-fastmail
+ExecStartPre=-/usr/bin/docker kill offlineimapfastmail
+ExecStartPre=-/usr/bin/docker rm offlineimapfastmail
+ExecStart=/usr/bin/docker run -t --name offlineimapfastmail -e EMAIL=${EMAIL} -e PASSWORD=${PASSWORD} -v /home/${USERNAME}/mail:/home/offlineimap/mail offlineimap-fastmail
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+# Offlineimap-Fastmail
+
+This is a docker container for running offlineimap with a Fastmail email address
+
+
+
+#### Usage
+
+````
+$ docker run -e EMAIL=$EMAIL -e PASSWORD=$PASSWORD -v ~/mail:/home/offlineimap/mail/ offlineimap-fastmail
+````
+
+This assumes `~/mail` exists and is writable by the user with uid `1000`; any directory with correct permissions can be used.
+
+#### systemd service
+
+An example systemd unit file has also been included in the repository for convenience. If using the provided file, make sure to define the `EMAIL`, `PASSWORD`, and `USERNAME` environment variables in `/etc/sysconfig/offlineimap-fastmail`. (`USERNAME` refers to your username on the host machine)
+
+````sh
+EMAIL=username@example.com
+PASSWORD=hunter2
+USERNAME=myusername
+````
