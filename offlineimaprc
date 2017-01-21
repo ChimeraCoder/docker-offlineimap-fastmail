@@ -24,6 +24,7 @@ ssl = yes
 expunge = no
 folderfilter = lambda foldername: foldername not in ['INBOX.Trash']
 maxconnections = 3
+readonly = True
 
 
 
