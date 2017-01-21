@@ -6,6 +6,7 @@ RUN apt-get -qq update --fix-missing
 RUN apt-get install -y bash 
 RUN apt-get install -y wget
 RUN apt-get install -y -o Acquire::ForceIPv4=true offlineimap ca-certificates
+RUN apt-get install -y -o Acquire::ForceIPv4=true vim
 
 
 RUN useradd -m offlineimap
