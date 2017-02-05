@@ -1,0 +1,10 @@
+[Unit]
+Description=Synchronizes mail every 4 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=4min
+Unit=offlineimap-fastmail.service
+
+[Install]
+WantedBy=multi-user.target timers.target

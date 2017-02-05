@@ -4,11 +4,24 @@ After=docker.service
 Requires=docker.service
 
 [Service]
+# Initial docker pull needs to download a lot of data
+# This can be removed if the image is guaranteed to be present
 TimeoutStartSec=0
+
+# Kill process after 3 minutes
+# (offlineimap can sometimes hang indefinitely if connection is spotty)
+RuntimeMaxSec=3min
+
+# For Debian and RHEL
 EnvironmentFile=/etc/sysconfig/offlineimap-fastmail
+
+# For Ubuntu
+# EnvironmentFile=/etc/default/offlineimap-fastmail
+
 ExecStartPre=-/usr/bin/docker kill offlineimapfastmail
 ExecStartPre=-/usr/bin/docker rm offlineimapfastmail
 ExecStart=/usr/bin/docker run -t --name offlineimapfastmail -e EMAIL=${EMAIL} -e PASSWORD=${PASSWORD} -v /home/${USERNAME}/mail:/home/offlineimap/mail chimeracoder/offlineimap-fastmail
 
 [Install]
-WantedBy=multi-user.target
+# timers.target is only needed if using offlineimap-fastmail.timer
+WantedBy=multi-user.target timers.target
