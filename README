@@ -21,3 +21,5 @@ EMAIL=username@example.com
 PASSWORD=hunter2
 USERNAME=myusername
 ````
+
+You may also want to use the included systemd timer to schedule periodic polling.
